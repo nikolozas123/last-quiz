@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0f2027;
+            background: -webkit-linear-gradient(to bottom, #2c5364, #203a43, #0f2027);
+            background: linear-gradient(to bottom, #2c5364, #203a43, #0f2027);
+        }
+        
+        .piano {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .white {
+            width: 9%;
+            min-width: 60px;
+            height: 70%;
+            background-color: white;
+            border: 1px, solid #ccc;
+        }
+        
+        .black {
+            width: 8%;
+            height: 45%;
+            margin-left: -4%;
+            margin-right: -4%;
+            z-index: 2;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="piano">
+        <div class="key white" data-note="C"></div>
+        <div class="key black" data-note="C#"></div>
+        <div class="key white" data-note="D"></div>
+        <div class="key black" data-note="D#"></div>
+        <div class="key white" data-note="E"></div>
+        <div class="key white" data-note="F"></div>
+        <div class="key black" data-note="F#"></div>
+        <div class="key white" data-note="G"></div>
+        <div class="key black" data-note="G#"></div>
+        <div class="key white" data-note="A"></div>
+        <div class="key black" data-note="A#"></div>
+        <div class="key white" data-note="B"></div>
+    </div>
+    <audio id="C" src="http://carolinegabriel.com/demo/js-keyboard/sounds/040.wav"></audio>
+    <audio id="C#" src="http://carolinegabriel.com/demo/js-keyboard/sounds/041.wav"></audio>
+    <audio id="D" src="http://carolinegabriel.com/demo/js-keyboard/sounds/042.wav"></audio>
+    <audio id="D#" src="http://carolinegabriel.com/demo/js-keyboard/sounds/043.wav"></audio>
+    <audio id="E" src="http://carolinegabriel.com/demo/js-keyboard/sounds/044.wav"></audio>
+    <audio id="F" src="http://carolinegabriel.com/demo/js-keyboard/sounds/045.wav"></audio>
+    <audio id="F#" src="http://carolinegabriel.com/demo/js-keyboard/sounds/046.wav"></audio>
+    <audio id="G" src="http://carolinegabriel.com/demo/js-keyboard/sounds/047.wav"></audio>
+    <audio id="G#" src="http://carolinegabriel.com/demo/js-keyboard/sounds/048.wav"></audio>
+    <audio id="A" src="http://carolinegabriel.com/demo/js-keyboard/sounds/049.wav"></audio>
+    <audio id="A#" src="http://carolinegabriel.com/demo/js-keyboard/sounds/050.wav"></audio>
+    <audio id="B" src="http://carolinegabriel.com/demo/js-keyboard/sounds/051.wav"></audio>
+    <script>
+        const keys = document.querySelectorAll('.key');
+        const regulars = document.querySelectorAll('.key white');
+        const sharps = document.querySelectorAll('.key black');
+
+        keys.forEach((key) => {
+            key.addEventListener('click', () => playNote(key));
+        });
+
+        let playNote = (key) => {
+            const noteSound = document.getElementById(key.dataset.note);
+            console.log(noteSound);
+        };
+
+        let playNote = (key) => {
+            const noteSound = document.getElementById(key.dataset.note);
+            noteSound.currentTime = 0;
+            noteSound.play();
+            key.classlist.add('active');
+            noteSound.addEventListener('ended', () => {
+                key.classlist.remove('active');
+            })
+        };
+    </script>
+</body>
+
+</html>
